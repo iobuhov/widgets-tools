@@ -13,6 +13,7 @@
     "scripts": {
         "build": "node build.mjs",
         "build:typings": "pnpm --filter=@mendix/widget-typings-generator run build",
+        "format": "prettier --write .",
         "prepack": "premove dist && pnpm build:typings && node build.mjs && node prepack.mjs",
         "test:integration": "premove test/results && node test/run-integration-test.mjs"
     },
@@ -37,8 +38,10 @@
         "vite": "^7.0.0"
     },
     "devDependencies": {
+        "@prettier/plugin-xml": "^1.2.0",
         "esbuild": "^0.24.0",
         "premove": "^4.0.0",
+        "prettier": "^2.5.1",
         "vite": "^7.3.1"
     }
 }

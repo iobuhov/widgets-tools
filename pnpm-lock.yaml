@@ -457,12 +457,18 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
     devDependencies:
+      '@prettier/plugin-xml':
+        specifier: ^1.2.0
+        version: 1.2.0
       esbuild:
         specifier: ^0.24.0
         version: 0.24.2
       premove:
         specifier: ^4.0.0
         version: 4.0.0
+      prettier:
+        specifier: ^2.5.1
+        version: 2.8.8
       vite:
         specifier: ^7.3.1
         version: 7.3.1(sass@1.89.2)(terser@5.43.1)(yaml@2.8.0)
