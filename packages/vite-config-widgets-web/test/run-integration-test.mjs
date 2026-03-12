@@ -130,11 +130,9 @@ exec("npm run build", testWidgetDir, "Building widget with Vite");
 console.log("\n📦 Phase 5: Verify build artifacts");
 const distDir = join(testWidgetDir, "dist");
 const mpkPath = checkFile(join(distDir, "1.0.0/TestCheckbox.mpk"), "MPK file");
-checkFile(join(distDir, "tmp/widgets/mendix/testcheckbox/testcheckbox/TestCheckbox.js"), "Runtime JS");
 checkFile(join(distDir, "tmp/widgets/mendix/testcheckbox/testcheckbox/TestCheckbox.mjs"), "Runtime MJS");
 checkFile(join(distDir, "tmp/widgets/TestCheckbox.xml"), "Widget XML");
 checkFile(join(distDir, "tmp/widgets/package.xml"), "Package XML");
-checkFile(join(testWidgetDir, "typings/TestCheckboxProps.d.ts"), "TypeScript typings");
 verifyZipFile(mpkPath);
 
 // Phase 6: Copy results

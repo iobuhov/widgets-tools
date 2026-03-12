@@ -1,4 +1,4 @@
 import { defineConfig } from "vite";
-import { createWidgetViteConfig } from "../../dist/config.web.mjs";
+import { createWidgetVite8Config } from "../../dist/config.web.mjs";
 
-export default createWidgetViteConfig();
+export default createWidgetVite8Config();

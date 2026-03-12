@@ -2,12 +2,12 @@ import { existsSync } from "fs";
 import type { EditorBuild, FileCopy } from "../types";
 import { toPackagePathDir } from "../helpers/package-json";
 
-export function inferPrimaryRuntimeFormat(): "cjs" | "amd" {
-    if (process.env.VITE_RUNTIME_FORMAT === "cjs") {
-        return "cjs";
+export function inferPrimaryRuntimeFormat(): "cjs" | "es" {
+    if (process.env.VITE_RUNTIME_FORMAT === "es") {
+        return "es";
     }
 
-    return "amd";
+    return "cjs";
 }
 
 export function inferMetadataFiles(widgetName: string): FileCopy[] {

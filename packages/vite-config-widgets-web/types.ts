@@ -6,7 +6,7 @@ export type EditorBuild = {
 };
 
 export type RuntimeOutput = {
-    format: "cjs" | "es" | "amd";
+    format: "cjs" | "es";
     entryFileName: string;
 };
 

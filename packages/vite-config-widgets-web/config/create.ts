@@ -27,14 +27,13 @@ export function createConfig(options: WidgetViteConfigOptions, env: ConfigEnv): 
             sourcemap: sourcemapMode,
             lib: {
                 entry: resolvedConfig.runtimeEntry,
-                name: resolvedConfig.widgetName
+                formats: resolvedConfig.runtimeOutputs.map(output => output.format)
             },
             outDir: resolvedConfig.runtimeOutDir,
-            rollupOptions: {
+            rolldownOptions: {
                 output: resolvedConfig.runtimeOutputs.map(runtimeOutput => ({
                     format: runtimeOutput.format,
-                    entryFileNames: runtimeOutput.entryFileName,
-                    inlineDynamicImports: true
+                    entryFileNames: runtimeOutput.entryFileName
                 })),
                 external: resolvedConfig.runtimeExternals
             }
@@ -62,14 +61,18 @@ export function createConfig(options: WidgetViteConfigOptions, env: ConfigEnv): 
                 apply: "build",
                 enforce: "post",
                 async closeBundle() {
-                    if (resolvedConfig.editorBuilds.length > 0) {
-                        console.log("Building editor artifacts...");
-                        await buildEditorArtifacts(resolvedConfig.editorBuilds, isDev);
-                    }
+                    console.log("DEBUG: closeBundle called");
+                    console.log("DEBUG: outDir =", resolvedConfig.runtimeOutDir);
 
-                    console.log("Building MPK...");
-                    const mpkPath = await createMPK(resolvedConfig);
-                    await deployMPKToMxProject(mpkPath);
+                    // Temporarily disabled to debug file generation
+                    // if (resolvedConfig.editorBuilds.length > 0) {
+                    //     console.log("Building editor artifacts...");
+                    //     await buildEditorArtifacts(resolvedConfig.editorBuilds, isDev);
+                    // }
+
+                    // console.log("Building MPK...");
+                    // const mpkPath = await createMPK(resolvedConfig);
+                    // await deployMPKToMxProject(mpkPath);
                 }
             }
         ]

@@ -16,3 +16,5 @@ export function TestCheckbox(props: TestCheckboxProps): ReactElement {
         </div>
     );
 }
+
+export default TestCheckbox;

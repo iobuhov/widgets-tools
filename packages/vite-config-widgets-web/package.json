@@ -35,13 +35,13 @@
     "archiver": "^7.0.1"
   },
   "peerDependencies": {
-    "vite": "^7.0.0"
+    "vite": "^8.0.0-beta.18"
   },
   "devDependencies": {
     "@prettier/plugin-xml": "^3.4.1",
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.27.3",
     "premove": "^4.0.0",
     "prettier": "^3.4.2",
-    "vite": "^7.3.1"
+    "vite": "^8.0.0-beta.18"
   }
 }
