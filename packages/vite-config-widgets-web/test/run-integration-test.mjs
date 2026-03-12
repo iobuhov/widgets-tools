@@ -58,7 +58,7 @@ function checkFile(path, description) {
 
 function verifyZipFile(path) {
     const buffer = readFileSync(path);
-    if (buffer[0] === 0x50 && buffer[1] === 0x4B) {
+    if (buffer[0] === 0x50 && buffer[1] === 0x4b) {
         logSuccess("MPK is valid ZIP archive");
         return true;
     }
@@ -89,7 +89,7 @@ console.log("\n📦 Phase 1: Copy test widget");
 log("Copying test-checkbox to temp directory...");
 cpSync(testWidgetSourceDir, testWidgetDir, {
     recursive: true,
-    filter: (src) => !src.includes("node_modules") && !src.includes("dist")
+    filter: src => !src.includes("node_modules") && !src.includes("dist")
 });
 logSuccess("Copied test widget");
 
@@ -97,7 +97,9 @@ logSuccess("Copied test widget");
 console.log("\n📦 Phase 2: Pack vite-config package");
 exec("pnpm pack --pack-destination " + tempDir, packageRoot, "Packing vite-config-widgets-web");
 
-const tarballName = `mendix-vite-config-widgets-web-${JSON.parse(readFileSync(join(packageRoot, "package.json"), "utf-8")).version}.tgz`;
+const tarballName = `mendix-vite-config-widgets-web-${
+    JSON.parse(readFileSync(join(packageRoot, "package.json"), "utf-8")).version
+}.tgz`;
 const tarballPath = join(tempDir, tarballName);
 checkFile(tarballPath, "Package tarball");
 

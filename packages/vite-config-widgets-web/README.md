@@ -2,7 +2,6 @@
 
 This package provides Vite configuration for building Mendix pluggable web widgets.
 
-
 ## Installation
 
 ```bash
@@ -123,6 +122,7 @@ pnpm test:integration:clean
 ```
 
 **How it works:**
+
 1. Creates a temporary directory (using Node.js `tmpdir()`)
 2. Packs the vite-config package as a tarball
 3. Copies test widget to temp directory
@@ -139,4 +139,3 @@ This ensures the package works correctly when installed from npm without interfe
 - `pnpm build` - Build the vite config package
 - `pnpm test:integration` - Run end-to-end integration tests
 - `pnpm test:integration:clean` - Remove test artifacts
-
