@@ -17,11 +17,11 @@ export function createVite8Config(options: WidgetViteConfigOptions, env: ConfigE
     // Override required artifacts to only check for .mjs (ES format only)
     const widgetPackageJson = readWidgetPackageJson();
     const packagePathDir = toPackagePathDir(widgetPackageJson.packagePath);
-    const runtimeDirectoryName = options.runtimeDirectoryName ?? resolvedConfig.widgetName.toLowerCase();
+    const buildDirectoryName = options.buildDirectoryName ?? resolvedConfig.widgetName.toLowerCase();
     const editorArtifacts = resolvedConfig.editorBuilds.map(editorBuild => editorBuild.outputFile);
     const vite8RequiredArtifacts = [
         ...editorArtifacts,
-        `${packagePathDir}/${runtimeDirectoryName}/${resolvedConfig.widgetName}.mjs`
+        `${packagePathDir}/${buildDirectoryName}/${resolvedConfig.widgetName}.mjs`
     ];
 
     return {
@@ -34,13 +34,15 @@ export function createVite8Config(options: WidgetViteConfigOptions, env: ConfigE
             minify: false,
             sourcemap: sourcemapMode,
             lib: {
-                entry: resolvedConfig.runtimeEntry,
-                formats: ["es"],
-                fileName: () => `${resolvedConfig.widgetName}.mjs`
+                entry: resolvedConfig.buildEntry,
+                formats: ["es"]
             },
-            outDir: resolvedConfig.runtimeOutDir,
+            outDir: resolvedConfig.buildOutDir,
             rolldownOptions: {
-                external: resolvedConfig.runtimeExternals
+                output: {
+                    entryFileNames: `${resolvedConfig.widgetName}.mjs`
+                },
+                external: resolvedConfig.buildExternals
             }
         },
         plugins: [

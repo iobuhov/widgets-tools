@@ -25,11 +25,11 @@ export function inferMetadataFiles(widgetName: string): FileCopy[] {
 export function inferRequiredArtifacts(
     widgetName: string,
     packagePath: string,
-    runtimeDirectoryName: string,
+    buildDirectoryName: string,
     editorBuilds: EditorBuild[]
 ): string[] {
     const packagePathDir = toPackagePathDir(packagePath);
-    const widgetDir = runtimeDirectoryName;
+    const widgetDir = buildDirectoryName;
 
     const editorArtifacts = editorBuilds.map(editorBuild => editorBuild.outputFile);
 
@@ -40,9 +40,9 @@ export function inferRequiredArtifacts(
     ];
 }
 
-export function inferRuntimeOutDir(packagePath: string, runtimeDirectoryName: string): string {
+export function inferBuildOutDir(packagePath: string, buildDirectoryName: string): string {
     const packagePathDir = toPackagePathDir(packagePath);
-    return `dist/tmp/widgets/${packagePathDir}/${runtimeDirectoryName}`;
+    return `dist/tmp/widgets/${packagePathDir}/${buildDirectoryName}`;
 }
 
 export function inferEditorBuilds(widgetName: string): EditorBuild[] {

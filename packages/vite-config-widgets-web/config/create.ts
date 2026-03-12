@@ -26,16 +26,16 @@ export function createConfig(options: WidgetViteConfigOptions, env: ConfigEnv): 
             minify: minifyMode,
             sourcemap: sourcemapMode,
             lib: {
-                entry: resolvedConfig.runtimeEntry,
-                formats: resolvedConfig.runtimeOutputs.map(output => output.format)
+                entry: resolvedConfig.buildEntry,
+                formats: resolvedConfig.buildOutputs.map(output => output.format)
             },
-            outDir: resolvedConfig.runtimeOutDir,
+            outDir: resolvedConfig.buildOutDir,
             rolldownOptions: {
-                output: resolvedConfig.runtimeOutputs.map(runtimeOutput => ({
-                    format: runtimeOutput.format,
-                    entryFileNames: runtimeOutput.entryFileName
+                output: resolvedConfig.buildOutputs.map(buildOutput => ({
+                    format: buildOutput.format,
+                    entryFileNames: buildOutput.entryFileName
                 })),
-                external: resolvedConfig.runtimeExternals
+                external: resolvedConfig.buildExternals
             }
         },
         plugins: [
@@ -62,7 +62,7 @@ export function createConfig(options: WidgetViteConfigOptions, env: ConfigEnv): 
                 enforce: "post",
                 async closeBundle() {
                     console.log("DEBUG: closeBundle called");
-                    console.log("DEBUG: outDir =", resolvedConfig.runtimeOutDir);
+                    console.log("DEBUG: outDir =", resolvedConfig.buildOutDir);
 
                     // Temporarily disabled to debug file generation
                     // if (resolvedConfig.editorBuilds.length > 0) {

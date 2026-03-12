@@ -5,7 +5,7 @@ export type EditorBuild = {
     format?: "cjs" | "es";
 };
 
-export type RuntimeOutput = {
+export type BuildOutput = {
     format: "cjs" | "es";
     entryFileName: string;
 };
@@ -27,7 +27,7 @@ export type WidgetPackageJson = {
 
 export type WidgetViteConfigOptions = {
     widgetName?: string;
-    runtimeDirectoryName?: string;
+    buildDirectoryName?: string;
 };
 
 export type ResolvedConfig = {
@@ -35,10 +35,10 @@ export type ResolvedConfig = {
     widgetVersion: string;
     mpkName: string;
     sourceDir: string;
-    runtimeEntry: string;
-    runtimeOutDir: string;
-    runtimeOutputs: RuntimeOutput[];
-    runtimeExternals: Array<string | RegExp>;
+    buildEntry: string;
+    buildOutDir: string;
+    buildOutputs: BuildOutput[];
+    buildExternals: Array<string | RegExp>;
     metadataFiles: FileCopy[];
     editorBuilds: EditorBuild[];
     requiredArtifacts: string[];

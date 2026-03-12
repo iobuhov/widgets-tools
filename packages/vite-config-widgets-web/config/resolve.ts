@@ -7,7 +7,7 @@ import {
     inferPrimaryRuntimeFormat,
     inferRemoveBeforeCopy,
     inferRequiredArtifacts,
-    inferRuntimeOutDir
+    inferBuildOutDir
 } from "./infer";
 
 export function getResolveAlias(): { find: RegExp; replacement: string }[] {
@@ -32,16 +32,16 @@ export function resolveConfig(options: WidgetViteConfigOptions, isDev: boolean =
     const widgetName = resolveWidgetName(options.widgetName, widgetPackageJson.widgetName);
     const primaryRuntimeFormat = inferPrimaryRuntimeFormat();
     const editorBuilds = inferEditorBuilds(widgetName);
-    const runtimeDirectoryName = options.runtimeDirectoryName ?? widgetName.toLowerCase();
+    const buildDirectoryName = options.buildDirectoryName ?? widgetName.toLowerCase();
 
     return {
         widgetName,
         widgetVersion: widgetPackageJson.version,
         mpkName: widgetPackageJson.mxpackage?.mpkName ?? `${widgetName}.mpk`,
         sourceDir: resolve(process.cwd(), "src"),
-        runtimeEntry: `src/${widgetName}.tsx`,
-        runtimeOutDir: inferRuntimeOutDir(widgetPackageJson.packagePath, runtimeDirectoryName),
-        runtimeOutputs: [
+        buildEntry: `src/${widgetName}.tsx`,
+        buildOutDir: inferBuildOutDir(widgetPackageJson.packagePath, buildDirectoryName),
+        buildOutputs: [
             {
                 format: primaryRuntimeFormat,
                 entryFileName: `${widgetName}.js`
@@ -51,13 +51,13 @@ export function resolveConfig(options: WidgetViteConfigOptions, isDev: boolean =
                 entryFileName: `${widgetName}.mjs`
             }
         ],
-        runtimeExternals: ["react", "react-dom", "@mendix/widget-plugin-component-kit", "big.js", /^mendix($|\/)/],
+        buildExternals: ["react", "react-dom", "@mendix/widget-plugin-component-kit", "big.js", /^mendix($|\/)/],
         metadataFiles: inferMetadataFiles(widgetName),
         editorBuilds,
         requiredArtifacts: inferRequiredArtifacts(
             widgetName,
             widgetPackageJson.packagePath,
-            runtimeDirectoryName,
+            buildDirectoryName,
             editorBuilds
         ),
         removeBeforeCopy: inferRemoveBeforeCopy(widgetPackageJson.name),
