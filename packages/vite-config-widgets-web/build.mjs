@@ -6,7 +6,8 @@ await esbuild.build({
     platform: "node",
     format: "esm",
     outfile: "dist/config.web.mjs",
-    external: ["vite", "archiver"]
+    external: ["vite", "archiver"],
+    target: "esnext",
 });
 
 console.log("✓ Built dist/config.web.mjs");

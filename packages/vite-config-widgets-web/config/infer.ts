@@ -1,6 +1,6 @@
 import { existsSync } from "fs";
-import type { EditorBuild, FileCopy } from "../types";
 import { toPackagePathDir } from "../helpers/package-json";
+import type { EditorBuild, FileCopy } from "../types";
 
 export function inferPrimaryRuntimeFormat(): "cjs" | "es" {
     if (process.env.VITE_RUNTIME_FORMAT === "es") {
@@ -17,7 +17,7 @@ export function inferMetadataFiles(widgetName: string): FileCopy[] {
         { src: `src/${widgetName}.icon.dark.png`, dest: `${widgetName}.icon.dark.png` },
         { src: `src/${widgetName}.tile.png`, dest: `${widgetName}.tile.png` },
         { src: `src/${widgetName}.tile.dark.png`, dest: `${widgetName}.tile.dark.png` },
-        { src: "../../../LICENSE", dest: "License.txt" },
+        { src: "LICENSE", dest: "LICENSE" },
         { src: "src/package.xml", dest: "package.xml" }
     ];
 }
